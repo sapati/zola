@@ -788,7 +788,10 @@ impl Site {
 
     fn index_for_lang(&self, lang: &str) -> Result<()> {
         let index_json = search::build_index(
-            &self.config.default_language,
+            match search::is_language_supported(lang) {
+                true => lang,
+                false => &self.config.default_language,
+            },
             &self.library.read().unwrap(),
             &self.config,
         )?;

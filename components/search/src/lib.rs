@@ -93,6 +93,11 @@ fn fill_index(
     row
 }
 
+// Checks whether the given language is supported by Elasticlunr
+pub fn is_language_supported(lang: &str) -> bool {
+    lang::from_code(lang).is_some()
+}
+
 /// Returns the generated JSON index with all the documents of the site added using
 /// the language given
 /// Errors if the language given is not available in Elasticlunr
